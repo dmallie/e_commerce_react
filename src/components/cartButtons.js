@@ -2,8 +2,10 @@ import React from 'react';
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const CartButtons = () => {
+       const selector = useSelector( state => state.cart);
        return(
 <CartWrapper>
 <div className="private_section">
@@ -11,7 +13,7 @@ const CartButtons = () => {
               <p className="navbar_p">cart</p>
               <span className='cart-container'>
                      <FaShoppingCart className='cart_icon'/>
-                     <span className='cart-value'>3</span>
+                     <span className='cart-value'>{selector.quantity}</span>
               </span>
        </Link>
        <Link to='/login' className='cart-btn'>

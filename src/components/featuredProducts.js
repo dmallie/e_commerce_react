@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Product from './product';
 // import Error from './Error';
 
+
 const FeaturedProducts = () => {
        const products = useLoaderData();
        const featuredProducts = products.res.data.filter(product => product.featured === true);

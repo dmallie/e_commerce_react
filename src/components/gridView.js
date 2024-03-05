@@ -1,33 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
 import { FormatPrice } from '../utils/utils';
+import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const Product = (props) => {
-       const formattedPrice = FormatPrice(props.price);
+const GridView = (props) => {
+       // console.log('props: ', props);
        return(
 <Wrapper>
-<div className='container'>
-       <img src={ props.image } alt={ props.name } />
-       <Link to='/' className='link'>
+<div className='contain'>
+       <img src={props.image} alt={props.title} />
+       <Link to={`/products/${props.id}`}  state= {props} className='link'>
               <FaSearch />
        </Link>
 </div>
 <footer>
-     <h5>{ props.name }</h5>
-     <p>$ { formattedPrice }</p>
+       <h5>{ props.name }</h5>
+       <p>$ { FormatPrice( props.price ) }</p>
 </footer>
 </Wrapper>
-       )
+       );
 };
-const Wrapper = styled.div `
-       .container{
+
+const Wrapper = styled.div`
+       .contain {
+              // layout
+              position: relative;
               // looks
               background: var(--clr-black);
               border-radius: var(--radius);
-              // layout
-              position: relative;
+              margin-bottom: 0;
+              margin-top: 0;
+       }
+       .contain:hover img {
+              opacity: 0.5;
+       }
+       .contain:hover .link{
+              opacity: 1;
        }
        img {
               // layout
@@ -41,30 +50,25 @@ const Wrapper = styled.div `
        .link {
               // layout
               position: absolute;
-              top: 50%;
               left: 50%;
+              top: 50%;
               transform: translate(-50%, -50%);
-              background: var(--clr-primary-5);
-              width: 2.5rem;
-              height: 2.5rem;
               display: flex;
               align-items: center;
               justify-content: center;
+              // size
+              width: 2.5rem;
+              height: 2.5rem;
               // looks
+              background: var(--clr-primary-5);
               transition: var(--transition);
-              opacity: 0;
               border-radius: 50%;
+              opacity: 0;
               cursor: pointer;
-              svg {
+              svg{
                      font-size: 1.25rem;
                      color: var(--clr-white);
               }
-       }
-       .container:hover img {
-              opacity: 0.5;
-       }
-       .container:hover .link {
-              opacity: 1;
        }
        footer {
               // layout
@@ -73,13 +77,16 @@ const Wrapper = styled.div `
               justify-content: space-between;
               align-items: center;
        }
-       footer h5, footer p {
-              margin-bottom: 0;
-              font-weight: 400;
+       footer h5,
+       footer p {
+              margin-top: 0;
+              font-weight: normal;
        }
        footer p {
               color: var(--clr-primary-5);
-              letter-spacing: var(--spacing);
+              letter-spacing:  var(--spacing);
        }
+
 `;
-export default Product;
+
+export default GridView;

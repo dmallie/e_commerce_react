@@ -1,5 +1,6 @@
 import AboutPage from './aboutPage';
-import CartPage from './cartPage';
+// import CartPage from './cartPage';
+import CartPage from './cartPage_2';
 import CheckoutPage from './checkoutPage';
 import ErrorPage from './errorPage';
 import HomePage from './homePage';
